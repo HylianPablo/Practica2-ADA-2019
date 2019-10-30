@@ -1,0 +1,21 @@
+Programa capaz de escribir un txt.
+	-Primera linea casos de prueba random N [1,50]
+	-Despues N lineas con:
+		--Primer numero instantes de tiempo M [1,10^6]
+		--Numeros de despues M valores [0,inf)
+
+Programa capaz de leer dichos txt
+Comprobacion de instante de tiempo
+Ver que se compra
+
+%%%%%% Algoritmo 1 %%%%%%%
+
+Para cada instante de tiempo se calcula la ganancia con respecto de los instantes posteriores y el algoritmo se queda con la mayor, devolviendo el valor de dicha ganancia y los instantes de tiempo de compra y venta. Si en ninguno de los instantes se puede obtener ganancia devolverá 0.
+
+%%%%% Algoritmo 2 %%%%%%%%
+
+Calcular la ganancia de un instante de tiempo sólo si el precio por acción en dicho instante es menor que el precio por acción del instante comprobado anteriormente. En caso de comprobar, comparar la nueva ganancia con la del instante anterior y quedarse con la mayor.
+
+
+
+Realizar memoria
