@@ -12,10 +12,13 @@ Ver que se compra
 
 Para cada instante de tiempo se calcula la ganancia con respecto de los instantes posteriores y el algoritmo se queda con la mayor, devolviendo el valor de dicha ganancia y los instantes de tiempo de compra y venta. Si en ninguno de los instantes se puede obtener ganancia devolverá 0.
 
-%%%%% Algoritmo 2 %%%%%%%%
+%%%%% Algoritmo version 2 del 1 %%%%%%%%
 
 Calcular la ganancia de un instante de tiempo sólo si el precio por acción en dicho instante es menor que el precio por acción del instante comprobado anteriormente. En caso de comprobar, comparar la nueva ganancia con la del instante anterior y quedarse con la mayor.
 
 
+%%%%%%%% Algoritmo 2 %%%%%%%%%%%%%%%%%%
+
+Tomamos nuestro vector y lo pasamos a pares (valor, posicion). Tras esto realizamos dos búsquedas binarias para hallar el máximo y el mínimo. Al acabar se comprueba que la posicion del maximo sea menor que la del minimo. Si no es así, se elimina del vector la casilla de maximo y se vuelve a realizar la busqueda. Si al final queda solo un elemento, no hay ganancia posible. Primero se saca el minimo y despues el maximo. En la segunda busqueda binaria, si el maximo se encontrase en una parte por detras de la posicion del minimo, se cancelaria la busqueda.
 
 Realizar memoria
