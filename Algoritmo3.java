@@ -2,35 +2,23 @@ import java.util.ArrayList;
 
 public class Algoritmo3 {
 
-    public static void main(String args[]) {
+    private ArrayList<Integer> array;
 
-        ArrayList<Integer> dummy = new ArrayList<>();
-        dummy.add(20);
-        dummy.add(19);
-        dummy.add(18);
-        dummy.add(17);
-        dummy.add(16);
-        dummy.add(15);
-        dummy.add(14);
-        dummy.add(13);
-        dummy.add(12);
-        dummy.add(11);
-        dummy.add(10);
-        dummy.add(9);
-        dummy.add(8);
-        dummy.add(7);
-        dummy.add(21);
+    public Algoritmo3(ArrayList<Integer> al){
+        array=al;
+        //array.remove(0);
+    }
 
-        // En este caso da 13 porque hay dos 79s y se toma el primero. REVISAR
-
-        ArrayList<Integer> al = new ArrayList<>();
-        int[] res = recursivo(dummy);
+    public void ejecutar(){
+        int[] res = recursivo(array);
         if (res != null) {
             System.out.println(ganancia(res) + ", " + (res[1]) + ", " + (res[3]));
         } else {
             System.out.println("No hay ganancia posible.");
         }
+
     }
+    
 
     public static int ganancia(int[] r) {
         return (r[2] - r[0]);

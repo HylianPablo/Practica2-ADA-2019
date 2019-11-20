@@ -1,32 +1,35 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Main{
-    public static void main(String args[]){
-        ArrayList<Integer> dummy = new ArrayList<>();
-        dummy.add(24);
-        dummy.add(48);
-        dummy.add(10);
-        dummy.add(23);
-        dummy.add(10);
-        dummy.add(41);
-        dummy.add(17);
-        dummy.add(72);
-        dummy.add(33);
-        dummy.add(82);
-        dummy.add(70);
-        dummy.add(69);
-        dummy.add(72);
-        dummy.add(80);
-        dummy.add(74);
+public class Main {
+    public static void main(String args[]) {
+        try {
+            Scanner scan = new Scanner(new File("entrada.txt"));
 
-    Algoritmo2 al2= new Algoritmo2(dummy);
+            int numVect=Integer.parseInt(scan.nextLine());
 
-    al2.createTreeMap();
-    ArrayList<int[]> vec = al2.mapToVector();
-    int[] res = al2.getMaxMin(vec);
+            for(int i=0;i<numVect;i++){
+                String vector = scan.nextLine();
+                String[] vecArray = vector.split(" ");
+                ArrayList<Integer> al = arrayToArrayList(vecArray);
+                Algoritmo3 al3 = new Algoritmo3(al);
+                al3.ejecutar();
+            }
 
-    for(int i=0;i<res.length;i++){
-        System.out.println(res[i]);
+            scan.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    public static ArrayList<Integer> arrayToArrayList(String[] arr){
+        ArrayList<Integer> al = new ArrayList<>();
+        for(int i=0;i<arr.length;i++){
+            al.add(Integer.parseInt(arr[i]));
+        }
+        return al;
     }
 }
