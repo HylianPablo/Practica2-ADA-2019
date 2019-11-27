@@ -26,12 +26,12 @@ public class Algoritmo1 {
 		}
 		int[][] precios = lectura(args[0]);
 		
-        int[][] instantes = new int[precios.length][3];
+		int[][] instantes = new int[precios.length][3];
         
-        for(int i = 0; i < precios.length; i++) {
-        	algoritmo(precios[i], instantes[i]);
-        	imprimir(instantes[i]);
-        } 
+		for(int i = 0; i < precios.length; i++) {
+			algoritmo(precios[i], instantes[i]);
+			imprimir(instantes[i]);
+		}
 	}
 	
 	/**
@@ -123,8 +123,8 @@ public class Algoritmo1 {
 			}
 		}
 		instantes[0] = ganancia;
-		instantes[1] = instanteCompra;
-		instantes[2] = instanteVenta;
+		instantes[1] = instanteCompra+1;
+		instantes[2] = instanteVenta+1;
 	}
 	
 	/**
