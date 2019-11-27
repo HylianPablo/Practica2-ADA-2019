@@ -38,12 +38,12 @@ public class Algoritmo3 {
                     backup = res[3];
                     res[2] = al.get(i);
                     res[3] = i;
-                    if (i < res[1]) {
+                    if (i < res[1] && backup>=res[1]) {
                         ArrayList<Integer> al2 = new ArrayList<Integer>(al.subList(res[1], backup + 1));
                         ArrayList<Integer> al3 = new ArrayList<Integer>(al.subList(0, res[1]));
                         int[] res2 = recursivo(al2);
                         int[] res3 = recursivo(al3);
-                        if (res2 != null) {
+                        if (res2 != null && res3 !=null) {
                             res2[1] = res2[1] + i + 1;
                             res2[3] = res2[3] + i + 1;
                             return (ganancia(res2) >= ganancia(res3)) ? res2 : res3;
