@@ -6,6 +6,7 @@ import java.lang.management.*;
 import java.math.BigInteger;
 
 public class Main {
+
     public static void main(String args[]) {
         try {
             Scanner scan = new Scanner(new File("entrada_grande.txt"));
@@ -22,16 +23,18 @@ public class Main {
             for (int i = 0; i < numVect; i++) {
                 String vector = scan.nextLine();
                 String[] vecArray = vector.split(" ");
+                System.out.println(vecArray[0]);
                 ArrayList<Integer> al = arrayToArrayList(vecArray);
                 Algoritmo3 al3 = new Algoritmo3(al);
                 al3.ejecutar();
+                System.out.println(al3.getResultados());
             }
             long tiempoFinal=getTime();
             long tF = System.currentTimeMillis();
 
             tiempoMedia=tiempoMedia.add(BigInteger.valueOf(tiempoFinal-tiempoInicio));
             tM=tM.add(BigInteger.valueOf(tF-tI));
-            System.out.println(tM.longValue());
+            System.out.println("Tiempo de ejecución del fichero: "+ tM.longValue()/1000.0+" segundos.");
 
             scan.close();
 
