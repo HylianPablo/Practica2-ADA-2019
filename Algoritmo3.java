@@ -51,8 +51,8 @@ public class Algoritmo3 {
                         int[] res2 = recursivo(al2);
                         int[] res3 = recursivo(al3);
                         if (res2 != null) {
-                            res2[1] = res2[1] + res[1];
-                            res2[3] = res2[3] + res[1];
+                            res2[1] = res2[1] + res[1] + 1;
+                            res2[3] = res2[3] + res[1] + 1;
                             numAsignaciones+=2;
                         }
                         return (ganancia(res2) >= ganancia(res3)) ? res2 : res3;

@@ -23,8 +23,8 @@ public class Main {
             for (int i = 0; i < numVect; i++) {
                 String vector = scan.nextLine();
                 String[] vecArray = vector.split(" ");
-                System.out.println(vecArray[0]);
                 ArrayList<Integer> al = arrayToArrayList(vecArray);
+                al.remove(0);
                 Algoritmo3 al3 = new Algoritmo3(al);
                 al3.ejecutar();
                 System.out.println(al3.getResultados());
