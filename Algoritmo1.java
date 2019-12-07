@@ -15,7 +15,7 @@ public class Algoritmo1 {
 
 
 	public static String salida;
-	public static int opElem;
+	public static long opElem;
 	public static PrintWriter writer;
 	
 	/*
