@@ -37,12 +37,17 @@ public class Algoritmo1 {
 		
 		int[][] instantes = new int[precios.length][3];
         
+		long iniTime, endTime;
+		double time;
 		
-		long iniTime = System.nanoTime();
 		for(int i = 0; i < precios.length; i++) {
+			opElem=0;
+			iniTime = System.nanoTime();
 			algoritmo(precios[i], instantes[i]);
+			endTime = System.nanoTime();
+			time = ((endTime - iniTime)/(double)1000000);
+			System.out.println(precios[i].length+","+opElem+","+time);
 		}
-		long endTime = System.nanoTime();
 		try{
 			writer = new PrintWriter(salida);
 		}catch(Exception e){
@@ -52,9 +57,6 @@ public class Algoritmo1 {
 			imprimir(instantes[i]);
 		}
 		writer.close();
-		double time = ((endTime - iniTime)/(double)1000000);
-		System.out.println("El numero de operaciones elementales es: " + opElem);
-		System.out.println("El tiempo de ejecucion del algoritmo es de: " + time + " ms.");
 	}
 	
 	/**
