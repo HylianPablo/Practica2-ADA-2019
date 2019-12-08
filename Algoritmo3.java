@@ -39,13 +39,13 @@ public class Algoritmo3 {
             numAsignaciones+=4;
 
             for (int i = al.size() - 1; i > 0; i--) {
+                numComparaciones++;
                 if (al.get(i) > res[2]) {
                     res[2] = al.get(i);
                     res[3] = i;
                     numAsignaciones+=2;
                     numComparaciones++;
                     if (res[3] < res[1] ) {
-                        numComparaciones++;
                         ArrayList<Integer> al2 = new ArrayList<Integer>(al.subList(res[1], al.size()));
                         ArrayList<Integer> al3 = new ArrayList<Integer>(al.subList(0, res[1]));
                         int[] res2 = recursivo(al2);
@@ -58,11 +58,11 @@ public class Algoritmo3 {
                         return (ganancia(res2) >= ganancia(res3)) ? res2 : res3;
                     }
                 }
+                numComparaciones++;
                 if (al.get(i) < res[0]) {
                     res[0] = al.get(i);
                     res[1] = i;
                     numAsignaciones+=2;
-                    numComparaciones++;
                 }
             }
         }
