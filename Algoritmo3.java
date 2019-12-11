@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Algoritmo3 {
 
-    private ArrayList<Integer> array;
+    private static ArrayList<Integer> array;
 
     public static int numComparaciones;
     public static int numAsignaciones;
@@ -14,9 +14,9 @@ public class Algoritmo3 {
     }
 
     public void ejecutar() {
-        int[] res = recursivo(array);
+        int[] res = recursivo(0,array.size()-1);
         if (res != null) {
-            System.out.println(ganancia(res) + ", " + (res[1]) + ", " + (res[3]));
+            System.out.println(ganancia(res) + ", " + (res[1]+1) + ", " + (res[3]+1));
         } else {
             System.out.println("No hay ganancia posible.");
         }
@@ -29,37 +29,35 @@ public class Algoritmo3 {
         return (r[2] - r[0]);
     }
 
-    public static int[] recursivo(ArrayList<Integer> al) {
+    public static int[] recursivo(int inf, int sup) {
         int[] res = new int[4];
-        if (al.size() > 1) {
-            res[3] = al.size() - 1;
-            res[2] = al.get(al.size() - 1);
-            res[1] = 0;
-            res[0] = al.get(0);
+        if (array.size() > 1) {
+            res[3] = sup - 1;
+            res[2] = array.get(sup - 1);
+            res[1] = inf;
+            res[0] = array.get(inf);
             numAsignaciones+=4;
 
-            for (int i = al.size() - 1; i > 0; i--) {
-                if (al.get(i) > res[2]) {
-                    res[2] = al.get(i);
+            for (int i = sup - 1; i > inf; i--) {
+                if (array.get(i) > res[2]) {
+                    res[2] = array.get(i);
                     res[3] = i;
                     numAsignaciones+=2;
                     numComparaciones++;
                     if (res[3] < res[1] ) {
                         numComparaciones++;
-                        ArrayList<Integer> al2 = new ArrayList<Integer>(al.subList(res[1], al.size()));
-                        ArrayList<Integer> al3 = new ArrayList<Integer>(al.subList(0, res[1]));
-                        int[] res2 = recursivo(al2);
-                        int[] res3 = recursivo(al3);
+                        int[] res2 = recursivo(res[1], sup);
+                        int[] res3 = recursivo(inf,res[1]);
                         if (res2 != null) {
-                            res2[1] = res2[1] + res[1] + 1;
-                            res2[3] = res2[3] + res[1] + 1;
+                            res2[1] = res2[1] + res[1];
+                            res2[3] = res2[3] + res[1];
                             numAsignaciones+=2;
                         }
                         return (ganancia(res2) >= ganancia(res3)) ? res2 : res3;
                     }
                 }
-                if (al.get(i) < res[0]) {
-                    res[0] = al.get(i);
+                if (array.get(i) < res[0]) {
+                    res[0] = array.get(i);
                     res[1] = i;
                     numAsignaciones+=2;
                     numComparaciones++;
