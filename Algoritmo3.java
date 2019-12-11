@@ -60,7 +60,6 @@ public class Algoritmo3 {
                     res[0] = array.get(i);
                     res[1] = i;
                     numAsignaciones+=2;
-                    numComparaciones++;
                 }
             }
         }

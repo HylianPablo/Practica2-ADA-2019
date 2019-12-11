@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.PrintWriter;
 
 /**
  * Implementacion del primer algoritmo.
@@ -12,6 +13,11 @@ import java.io.FileReader;
  */
 public class Algoritmo1 {
 
+
+	public static String salida;
+	public static long opElem;
+	public static PrintWriter writer;
+	
 	/*
 	 * Ejecuta el algoritmo e imprime sus resultados por pantalla
 	 * a partir del fichero de entrada especificado
@@ -19,19 +25,38 @@ public class Algoritmo1 {
 	 * args[0] ruta al fichero de entrada
 	 */
 	public static void main(String[] args) {
-		if(args.length != 1) {
+		if(args.length != 2) {
 			System.out.println("Número incorrecto de argumentos");
 			System.out.println("Se debe especificar la ruta al fichero con los datos");
+			System.out.println("Se debe especificar la ruta al fichero de salida");
 			return;
 		}
 		int[][] precios = lectura(args[0]);
+		salida = args[1];
+		opElem = 0;
 		
 		int[][] instantes = new int[precios.length][3];
         
+		long iniTime, endTime;
+		double time;
+		
 		for(int i = 0; i < precios.length; i++) {
+			opElem=0;
+			iniTime = System.nanoTime();
 			algoritmo(precios[i], instantes[i]);
+			endTime = System.nanoTime();
+			time = ((endTime - iniTime)/(double)1000000);
+			System.out.println(precios[i].length+","+opElem+","+time);
+		}
+		try{
+			writer = new PrintWriter(salida);
+		}catch(Exception e){
+			System.err.println(e);
+		}
+		for(int i = 0; i < precios.length; i++){
 			imprimir(instantes[i]);
 		}
+		writer.close();
 	}
 	
 	/**
@@ -91,6 +116,7 @@ public class Algoritmo1 {
 		int instanteVenta = 0;
 		for(int i = instanteCompra; i < precios.length; i++) {
 			int gananciaActual = precios[i]-precios[instanteCompra];
+			opElem++;
 			if(ganancia < gananciaActual) {
 				ganancia = gananciaActual;
 				instanteVenta = i;
@@ -115,6 +141,7 @@ public class Algoritmo1 {
 			if((i==0)||(precios[i] < precios[i-1])) {
 				resultadoT = calcularGanancia(precios, i);
 				gananciaTemp = resultadoT[0];
+				opElem++;
 				if (ganancia < gananciaTemp) {
 					instanteCompra = i;
 					ganancia = gananciaTemp;
@@ -135,11 +162,11 @@ public class Algoritmo1 {
 	 * 		  instantes[1] instante de compra
 	 * 		  instantes[2] instante de venta
 	 */
-	public static void imprimir(int[] instantes) {
+	public static void imprimir(int[] instantes) {		
 		if(instantes[0]!= 0) {
-			System.out.println(instantes[0] +" "+ instantes[1] +" "+ instantes[2]);
+			writer.println(instantes[0] +" "+ instantes[1] +" "+ instantes[2]);
 		}else {
-			System.out.println("0");
+			writer.println("0");
 		}
 	}
 }
