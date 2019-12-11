@@ -39,6 +39,7 @@ public class Algoritmo3 {
             numAsignaciones+=4;
 
             for (int i = sup - 1; i > inf; i--) {
+                numComparaciones++;
                 if (array.get(i) > res[2]) {
                     int tmp=res[2];
                     int mpt =res[3];
@@ -47,13 +48,14 @@ public class Algoritmo3 {
                     numAsignaciones+=2;
                     numComparaciones++;
                     if (res[3] < res[1] ) {
-                        numComparaciones++;
                         res[2]=tmp;
                         res[3]=mpt;
+			numAsignaciones+=2;
                         int[] res3 = recursivo(inf,res[1]);
                         return (ganancia(res) >= ganancia(res3)) ? res : res3;
                     }
                 }
+		numComparaciones++;
                 if (array.get(i) < res[0]) {
                     res[0] = array.get(i);
                     res[1] = i;
