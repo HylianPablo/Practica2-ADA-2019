@@ -7,12 +7,20 @@ public class Algoritmo3 {
     public static int numComparaciones;
     public static int numAsignaciones;
 
+    /**
+     * Segundo algoritmo implementado, basado en las técnicas de recursividad y programación dinámica. Se explica en profundidad en la memoria de trabajo.
+     * @param al Vector de enteros del que se necesita obtener los valores óptimos.
+     */
     public Algoritmo3(ArrayList<Integer> al) {
         array = al;
         numAsignaciones=0;
         numComparaciones=0;
     }
 
+    /**
+     * Ejecuta el algoritmo y calcula lña ganancia total.
+     * @return Cadena de caracteres que representa la ganancia total y las posiciones del vector óptimas para la venta y la compra.
+     */
     public String ejecutar() {
         int[] res = recursivo(0,array.size()-1);
         if (res != null) {
@@ -23,12 +31,23 @@ public class Algoritmo3 {
 
     }
 
+    /**
+     * Calcula la ganancia de un vector. En el caso de ser un vector nulo, devuelve ganancia '-1'.
+     * @param r Vector de cuatro números enteros a comparar. Las posiciones pares representan el precio del instante de compra y las impares el propio instante de compra (posición del vector)
+     * @return Número entero que representa la ganancia obtenida.
+     */
     public static int ganancia(int[] r) {
         if (r == null)
             return -1;
         return (r[2] - r[0]);
     }
 
+    /**
+     * Obtiene los valores óptimos de compra y venta linealmente, hasta que encuentra un caso donde exista un valor de venta antes que uno de compra, donde se crea un subvectoir y se llama recursivamente, conservando la parte ya analizada.
+     * @param inf Número entero que representa el índice inferior del vector original.
+     * @param sup Número entero que representa el índice superior del vector original.
+     * @return Vector de cuatro números enteros. Las posiciones pares representan el precio del instante de compra y las impares el propio instante de compra (posición del vector)
+     */
     public static int[] recursivo(int inf, int sup) {
         int[] res = new int[4];
         if (array.size() > 1) {
@@ -66,6 +85,10 @@ public class Algoritmo3 {
         return (res[1] == res[3]) ? null : res;
     }
 
+    /**
+     * Devuelve el número de operaciones elementales de la ejecución.
+     * @return Cadena de caracteres que representa el número de operaciones elementales (comparaciones y asignaciones) de la ejecución.
+     */
     public String getResultados(){
         return("Num asignaciones: "+numAsignaciones+", num comparaciones: "+numComparaciones);
     }
