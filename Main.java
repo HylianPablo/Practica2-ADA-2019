@@ -1,12 +1,7 @@
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.lang.management.*;
-import java.math.BigInteger;
 
 public class Main {
 
