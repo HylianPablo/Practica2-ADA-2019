@@ -13,12 +13,12 @@ public class Algoritmo3 {
         numComparaciones=0;
     }
 
-    public void ejecutar() {
+    public String ejecutar() {
         int[] res = recursivo(0,array.size()-1);
         if (res != null) {
-            System.out.println(ganancia(res) + ", " + (res[1]+1) + ", " + (res[3]+1));
+            return (""+ganancia(res) + ", " + (res[1]+1) + ", " + (res[3]+1));
         } else {
-            System.out.println("No hay ganancia posible.");
+            return "No hay ganancia posible.";
         }
 
     }
@@ -32,28 +32,26 @@ public class Algoritmo3 {
     public static int[] recursivo(int inf, int sup) {
         int[] res = new int[4];
         if (array.size() > 1) {
-            res[3] = sup - 1;
-            res[2] = array.get(sup - 1);
-            res[1] = inf;
-            res[0] = array.get(inf);
+            res[3] = sup - 1; //instante de venta
+            res[2] = array.get(sup - 1);//precio de instante de venta
+            res[1] = inf;//instante de compra
+            res[0] = array.get(inf);//precio de instante de compra
             numAsignaciones+=4;
 
             for (int i = sup - 1; i > inf; i--) {
                 if (array.get(i) > res[2]) {
+                    int tmp=res[2];
+                    int mpt =res[3];
                     res[2] = array.get(i);
                     res[3] = i;
                     numAsignaciones+=2;
                     numComparaciones++;
                     if (res[3] < res[1] ) {
                         numComparaciones++;
-                        int[] res2 = recursivo(res[1], sup);
+                        res[2]=tmp;
+                        res[3]=mpt;
                         int[] res3 = recursivo(inf,res[1]);
-                        if (res2 != null) {
-                            res2[1] = res2[1] + res[1];
-                            res2[3] = res2[3] + res[1];
-                            numAsignaciones+=2;
-                        }
-                        return (ganancia(res2) >= ganancia(res3)) ? res2 : res3;
+                        return (ganancia(res) >= ganancia(res3)) ? res : res3;
                     }
                 }
                 if (array.get(i) < res[0]) {
